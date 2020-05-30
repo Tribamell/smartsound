@@ -1,7 +1,17 @@
-	//Make makeconnection
+	//Make makeconnection to:
 	var socket = io.connect('http://localhost:4000');
-	var socket = io.connect('100.72.164.3:4000')
+	var socket = io.connect('100.72.164.3:4000');
 
+//enter ip from textbox
+function getIP (){
+	var ipaddress = document.getElementById("connectto").value;
+};
+
+//WHEN CLICK OK, EXECUTE FUNCTION getIP
+
+
+
+//stop button
 	var stop = 0;
   var output = document.getElementById('c');
 
@@ -19,29 +29,17 @@
 	function updateAudiocontext (data, oscillator, audioCtx){
 		window.oscillator;
 		window.audioCtx;
-
 		window.oscillator.type = data.type;
 		window.oscillator.frequency.setValueAtTime(data.frequency, window.audioCtx.currentTime); // value in hertz
 		window.oscillator.connect(window.audioCtx.destination);
 		window.oscillator.start();
 	}
 
+//stop button listener
 	document.querySelector('button').addEventListener('click', function() {
 	  stop = 0;
 	});
-
 	document.querySelector('#stop').addEventListener('click', function() {
 		stop = 1;
 		window.oscillator.stop();
 	});
-
-
-
-
-	//volume
-const gainNode = audioCtx.createGain();
-
-const volumeControl = document.querySelector('[data-action="volume"]');
-volumeControl.addEventListener('input', function() {
-	gainNode.gain.value = this.value;
-}, false);

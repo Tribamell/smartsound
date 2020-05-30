@@ -3,11 +3,10 @@ var socket = io.connect('http://localhost:4000');
 var forma = "sine";
 
 
-  $("button").on("click", function(){
 
+  $("button").on("click", function(){
     updateSound($(this).val(), $("#forma").val());
   });
-
 
   function updateSound (frequencia, forma){
 
