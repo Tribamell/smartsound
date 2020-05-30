@@ -1,18 +1,16 @@
-
 <!DOCTYPE html>
 <html>
   <head>
-    <title>WebSockets Test</title>
+    <title>CLIENT</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
 <script>
   var socket = io();
 </script>
   </head>
   <body>
+    <div><b>Client side</b></div>
+    <button id="stop">Empty Button</button>
     <div id="client">
-      <button style="height:200px;width:200px;">START</button>
-      <button id="stop" style="height:200px;width:200px">STOP, PLEASE</button>
-
 		<div id="c"></div>
     </div>
     <script src="/client.js"></script>
