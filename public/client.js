@@ -1,39 +1,40 @@
 
 //Make makeconnection
 	var socket = io.connect('http://localhost:4000')
-	var socket = io.connect('100.72.164.3:4000')
 
 	var stop = 0;
-    output = document.getElementById('c');
+    var output = document.getElementById('c');
 
-
-	document.querySelector('button').addEventListener('click', function() {
-	  stop = 0;
-
-	  // create Oscillator node
-	});
-
-	document.querySelector('#stop').addEventListener('click', function() {
-		stop = 1;
-	});
+	var audioCtx = new (window.webkitAudioContext || window.AudioContext)();
+	var oscillator = audioCtx.createOscillator();
 
 
 	// Listen for events
-	socket.on('channel', function(data, oscillator, audioCtx){
+	socket.on('channel', function(data){
 		console.log(data);
 
-		var audioCtx = new (window.webkitAudioContext || window.AudioContext)();
-		var oscillator = audioCtx.createOscillator();
+		updateAudiocontext (data);
+
+
+		output.innerHTML += '<p><strong>' + data.type + ': </strong>' + data.frequency + '</p>';
+
+	});
+	
+	function updateAudiocontext (data, oscillator, audioCtx){
+		var oscillator = window.oscillator;
+		var audioCtx = window.audioCtx;
 
 		oscillator.type = data.type;
 		oscillator.frequency.setValueAtTime(data.frequency, audioCtx.currentTime); // value in hertz
 		oscillator.connect(audioCtx.destination);
 		oscillator.start();
 
-		audioCtx.resume().then(() => {
-			console.log('Playback resumed successfully');
-		});
+	}
 
-		output.innerHTML += '<p><strong>' + data.type + ': </strong>' + data.frequency + '</p>';
+	document.querySelector('button').addEventListener('click', function() {
+	  stop = 0;
+	});
 
+	document.querySelector('#stop').addEventListener('click', function() {
+		stop = 1;
 	});
