@@ -1,0 +1,36 @@
+//Make makeconnection
+var socket = io.connect('http://localhost:4000')
+
+// Query DOM
+var message = document.getElementById('message'),
+    handle = document.getElementById('handle'),
+    btn = document.getElementById('send'),
+    output = document.getElementById('output');
+
+//Emit events
+btn.addEventListener('click', function(){
+  socket.emit('chat', { //emitting a message with 2 parameters called "chat"
+      message: message.value, //parameter 1
+      handle: handle.value //parameter 2
+  });
+  message.value = "";
+});
+
+// Listen for events
+socket.on('chat', function(data){
+    output.innerHTML += '<p><strong>' + data.handle + ': </strong>' + data.message + '</p>';
+});
+
+
+document.querySelector('button').addEventListener('click', function() {
+  var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+  // create Oscillator node
+  var oscillator = audioCtx.createOscillator();
+
+  oscillator.type = 'sine';
+  oscillator.frequency.setValueAtTime(440, audioCtx.currentTime); // value in hertz
+  oscillator.connect(audioCtx.destination);
+  oscillator.start();
+
+});
