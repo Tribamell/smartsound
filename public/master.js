@@ -6,15 +6,20 @@ var socket = io.connect('http://localhost:4000')
   });
   
   $("#slider").on("change", function(){
-	  updateSound();
+	  updateSound($("#slider").val());
+
+  });
+    
+  $("button").on("click", function(){
+	  updateSound($(this).val());
 
   });
   
   
-  function updateSound (){
+  function updateSound (frequencia){
 	  
 	  socket.emit('channel', { //emitting a message with 2 parameters called "channel"
-		  frequency: $("#slider").val(), //parameter 1
+		  frequency: frequencia, //parameter 1
 		  type: 'sine' //parameter 2
 	  });  
   }

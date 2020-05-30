@@ -1,6 +1,5 @@
-
-//Make makeconnection
-	var socket = io.connect('http://localhost:4000')
+	//Make makeconnection
+	var socket = io.connect('http://localhost:4000');
 
 	var stop = 0;
     var output = document.getElementById('c');
@@ -8,27 +7,22 @@
 	var audioCtx = new (window.webkitAudioContext || window.AudioContext)();
 	var oscillator = audioCtx.createOscillator();
 
-
 	// Listen for events
 	socket.on('channel', function(data){
 		console.log(data);
 
 		updateAudiocontext (data);
-
-
 		output.innerHTML += '<p><strong>' + data.type + ': </strong>' + data.frequency + '</p>';
-
 	});
 	
 	function updateAudiocontext (data, oscillator, audioCtx){
-		var oscillator = window.oscillator;
-		var audioCtx = window.audioCtx;
+		window.oscillator;
+		window.audioCtx;
 
-		oscillator.type = data.type;
-		oscillator.frequency.setValueAtTime(data.frequency, audioCtx.currentTime); // value in hertz
-		oscillator.connect(audioCtx.destination);
-		oscillator.start();
-
+		window.oscillator.type = data.type;
+		window.oscillator.frequency.setValueAtTime(data.frequency, window.audioCtx.currentTime); // value in hertz
+		window.oscillator.connect(window.audioCtx.destination);
+		window.oscillator.start();
 	}
 
 	document.querySelector('button').addEventListener('click', function() {
@@ -37,4 +31,5 @@
 
 	document.querySelector('#stop').addEventListener('click', function() {
 		stop = 1;
+		window.oscillator.stop();
 	});
