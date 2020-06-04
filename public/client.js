@@ -1,6 +1,6 @@
 	//Make makeconnection to:
 	var socket = io.connect('http://localhost:4000');
-	var socket = io.connect('100.72.164.3:4000');
+	var socket = io.connect('100.72.160.85:4000');
 
 //enter ip from textbox
 function getIP (){
