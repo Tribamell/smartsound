@@ -3,12 +3,20 @@ var socket = io.connect('http://localhost:4000');
 var forma = "sine";
 
 
-    $(".key").on("click", function(){
+    $(".key").on("mousedown", function(){
         updateSound($(this).data('value'), $("#forma").val());
     });
 
-  $("button").on("click", function(){
+  $("button").on("mousedown", function(){
     updateSound($(this).val(), $("#forma").val());
+  });
+
+  $(".key").on("mouseup", function(){
+    updateSound(0, $("#forma").val());
+  });
+
+  $("button").on("mouseup", function(){
+    updateSound(0, $("#forma").val());
   });
 
   function updateSound (frequencia, forma){
@@ -25,6 +33,7 @@ $("body").on("keypress", function(e){
     switch (code){
         case (97):
             updateSound(261.63, $("#forma").val());
+            $("keyboard").css('background-color'), rgb(255,192,32);
             break;
         case (119):
             updateSound(277.18, $("#forma").val());

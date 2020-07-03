@@ -7,6 +7,25 @@
 <script>
   var socket = io();
 </script>
+
+<button id="stop">STOP</button> <br>
+<input type="range" min="1" max="100" value="100" class="slider"> <br>
+<!--      <button id="C" value="261.63">C</button>-->
+<!--      <button id="D" value="293.66">D</button>-->
+<!--      <button id="E" value="329.63">E</button>-->
+<!--      <button id="F" value="349.23">F</button>-->
+<!--      <button id="G" value="392.00">G</button>-->
+<!--      <button id="A" value="440.00">A</button>-->
+<!--      <button id="B" value="493.88">B</button>-->
+<!--      <button id="C" value="523.25">C'</button> <br>-->
+
+<select id="forma">
+    <option value="sine">Sine</option>
+    <option value="square">Square</option>
+    <option value="triangle">Triangle</option>
+</select>
+</div>
+
       <style>
 
           body { font-family: Helvetica; color: rgb(32,32,32); padding: 10px;
@@ -22,7 +41,7 @@
               box-shadow: 0px 5px 1px rgba(32,32,32,0.2);
               -webkit-transition: margin 0.05s ease, background-color 0.05s ease, box-shadow 0.05s ease; }
           .key:hover { background-color: rgb(255,192,32); }
-
+          
 
           .key .label { position: absolute; bottom: 5px; text-align: center; left: 0px; right: 0px; }
 
@@ -110,24 +129,6 @@
 
 
 
-      <button id="stop">STOP</button> <br>
-      <input type="range" min="1" max="100" value="100" class="slider"> <br>
-<!--      <button id="C" value="261.63">C</button>-->
-<!--      <button id="D" value="293.66">D</button>-->
-<!--      <button id="E" value="329.63">E</button>-->
-<!--      <button id="F" value="349.23">F</button>-->
-<!--      <button id="G" value="392.00">G</button>-->
-<!--      <button id="A" value="440.00">A</button>-->
-<!--      <button id="B" value="493.88">B</button>-->
-<!--      <button id="C" value="523.25">C'</button> <br>-->
-
-      <select id="forma">
-          <option value="sine">Sine</option>
-          <option value="square">Square</option>
-          <option value="triangle">Triangle</option>
-      </select>
-
-    </div>
     <script src="master.js"></script>
   </body>
 </html>
