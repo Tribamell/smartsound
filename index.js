@@ -17,9 +17,8 @@ var io = socket(server);
 io.on('connection', function(socket){
     console.log('made socket connection', socket.id)
 
-    // Handle chat event
+    // Handle event
     socket.on('channel', function(data){
-        // console.log(data);
         io.sockets.emit('channel', data);
     });
 
