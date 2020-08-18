@@ -1,11 +1,13 @@
-//Make makeconnection
+//Make connection
 var socket = io.connect('http://localhost:4000');
+
+//init config
 var forma = "sine";
 
 
-    $(".key").on("mousedown", function(){
+  $(".key").on("mousedown", function(){
       updateSound($(this).data('value'), $("#forma").val());
-    });
+  });
 
   $("button").on("mousedown", function(){
     updateSound($(this).val(), $("#forma").val());
@@ -22,12 +24,13 @@ var forma = "sine";
   function updateSound (frequencia, forma){
       console.log(frequencia, forma);
 
-	  socket.emit('channel', { //emitting a message called "channel" with 2 parameters"
+	  socket.emit('channel', { //emitting a message with 2 parameters"
 		  frequency: frequencia, //parameter 1
 		  type: forma, //parameter 2
 	  });
   }
 
+//change color on keypress and send data
 $("body").on("keypress", function(e){
   console.log(e);
   // alert(e.keyCode);
@@ -95,6 +98,8 @@ $("body").on("keypress", function(e){
             break;
     }
 });
+
+
 $("body").on("keyup", function(e){
 $(".pressed").removeClass('pressed');
 updateSound(0, $("#forma").val());

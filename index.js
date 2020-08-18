@@ -1,5 +1,4 @@
 //serverside code
-
 var express = require('express');
 var socket = require('socket.io');
 
@@ -17,9 +16,10 @@ var io = socket(server);
 io.on('connection', function(socket){
     console.log('made socket connection', socket.id)
 
-    // Handle event
+    // Handle data from control
     socket.on('channel', function(data){
         io.sockets.emit('channel', data);
+        console.log('Data:', data);
     });
 
 ;})

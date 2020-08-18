@@ -1,22 +1,24 @@
-	//Make makeconnection to:
+	//Make connection to:
 	var socket = io.connect('http://localhost:4000');
-//	var socket = io.connect('http://192.168.1.133:4000');
+//	var socket = io.connect('http://192.168.1.131:4000');
 
 
 
 //stop button
 	var stop = 0;
+
   var output = document.getElementById('c');
 
+//Create audio context and oscillator
 	var audioCtx = new (window.webkitAudioContext || window.AudioContext)();
 	var oscillator = audioCtx.createOscillator();
 
 	// Listen for events
 	socket.on('channel', function(data){
 		console.log(data);
-
+    //Send data to oscillator
 		updateAudiocontext (data);
-		output.innerHTML += '<p><strong>' + data.type + ': </strong>' + data.frequency + '</p>';
+		output.innerHTML += data.type + data.frequency;
 	});
 
 	function updateAudiocontext (data, oscillator, audioCtx){
